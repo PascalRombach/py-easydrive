@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; py-easydrive  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to py-easydrive’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> py-easydrive
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#controlling-the-supercars">Controlling the supercars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#controller">Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vehicle">Vehicle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vehicle-models">Vehicle models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lights">Lights</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#track-models">Track models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trackpiece">TrackPiece</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lane-support">Lane support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lane3">Lane3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lane4">Lane4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-easydrive.errors">Exceptions</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">py-easydrive</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h1>
+<section id="controlling-the-supercars">
+<h2>Controlling the supercars<a class="headerlink" href="#controlling-the-supercars" title="Permalink to this heading"></a></h2>
+<section id="controller">
+<h3>Controller<a class="headerlink" href="#controller" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="easydrive.Controller">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easydrive.</span></span><span class="sig-name descname"><span class="pre">Controller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Controller" title="Permalink to this definition"></a></dt>
+<dd><p>This object controls all vehicle connections. With it you can connect to any number of vehicles and disconnect cleanly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>timeout</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code> The time until the controller gives up searching for a vehicle.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Controller.connect_many">
+<span class="sig-name descname"><span class="pre">connect_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#easydrive.Vehicle" title="easydrive.control.vehicle.Vehicle"><span class="pre">easydrive.control.vehicle.Vehicle</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#easydrive.Controller.connect_many" title="Permalink to this definition"></a></dt>
+<dd><p>Connect to &lt;amount&gt; non-charging Supercars</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amount</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
+The amount of vehicles to connect to</p></li>
+<li><p><strong>vehicle_ids</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Iterable[int]]</span></code>
+The vehicle ids passed to the <a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a> instances</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The connected supercars</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple[Vehicle]</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – The amount of requested supercars does not match the length of :param vehicle_ids:</p></li>
+<li><p><strong>VehicleNotFound</strong> – No supercar was found in the set timeout</p></li>
+<li><p><strong>ConnectionTimedoutException</strong> – A connection attempt to one of the supercars timed out</p></li>
+<li><p><strong>ConnectionDatabusException</strong> – A databus error occured whilst connecting to a supercar</p></li>
+<li><p><strong>ConnectionFailedException</strong> – A generic error occured whilst connecting to a supercar</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Controller.connect_one">
+<span class="sig-name descname"><span class="pre">connect_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vehicle_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#easydrive.Vehicle" title="easydrive.control.vehicle.Vehicle"><span class="pre">Vehicle</span></a></span></span><a class="headerlink" href="#easydrive.Controller.connect_one" title="Permalink to this definition"></a></dt>
+<dd><p>Connect to one non-charging Supercar and return the Vehicle instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vehicle_id</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[int]</span></code>
+The id given to the <a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a> instance on connection</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The connected supercar</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>VehicleNotFound</strong> – No supercar was found in the set timeout</p></li>
+<li><p><strong>ConnectionTimedoutException</strong> – The connection attempt to the supercar did not succeed within the set timeout</p></li>
+<li><p><strong>ConnectionDatabusException</strong> – A databus error occured whilst connecting to the supercar</p></li>
+<li><p><strong>ConnectionFailedException</strong> – A generic error occured whilst connection to the supercar</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Controller.connect_specific">
+<span class="sig-name descname"><span class="pre">connect_specific</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#easydrive.Vehicle" title="easydrive.control.vehicle.Vehicle"><span class="pre">Vehicle</span></a></span></span><a class="headerlink" href="#easydrive.Controller.connect_specific" title="Permalink to this definition"></a></dt>
+<dd><p>Connect to a supercar with a specified MAC address</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>address</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+The MAC-address of the vehicle to connect to. Needs to be uppercase seperated by colons</p></li>
+<li><p><strong>vehicle_id</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[int]</span></code>
+The id passed to the <a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a> object on its creation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The connected supercar</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>VehicleNotFound</strong> – No supercar was found in the set timeout</p></li>
+<li><p><strong>ConnectionTimedoutException</strong> – The connection attempt to the supercar did not succeed within the set timeout</p></li>
+<li><p><strong>ConnectionDatabusException</strong> – A databus error occured whilst connecting to the supercar</p></li>
+<li><p><strong>ConnectionFailedException</strong> – A generic error occured whilst connection to the supercar</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Controller.disconnect_all">
+<span class="sig-name descname"><span class="pre">disconnect_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Controller.disconnect_all" title="Permalink to this definition"></a></dt>
+<dd><p>Disconnects from all the connected supercars</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>blocking</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+If set to <code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code>, this method will wait for all disconnects to finish before it completes.</p></li>
+<li><p><strong>completion_callback</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Callable[[],None]]</span></code>
+A function or similar to be called when the disconnects are complete.
+This function cannot require any argument.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>DisconnectTimedoutException</strong> – A disconnection attempt timed out</p></li>
+<li><p><strong>DisconnectFailedException</strong> – A disconnection attempt failed for unspecific reasons</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easydrive.Controller.map_types">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">map_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span></em><a class="headerlink" href="#easydrive.Controller.map_types" title="Permalink to this definition"></a></dt>
+<dd><p>A list of <code class="xref py py-attr docutils literal notranslate"><span class="pre">TrackPiece.type</span></code> of the map, in-order</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Controller.scan">
+<span class="sig-name descname"><span class="pre">scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scan_vehicle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#easydrive.Vehicle" title="easydrive.control.vehicle.Vehicle"><span class="pre">Vehicle</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">align_pre_scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#easydrive.TrackPiece" title="anki.utility.track_pieces.TrackPiece"><span class="pre">anki.utility.track_pieces.TrackPiece</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#easydrive.TrackPiece" title="anki.utility.track_pieces.TrackPiece"><span class="pre">anki.utility.track_pieces.TrackPiece</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#easydrive.Controller.scan" title="Permalink to this definition"></a></dt>
+<dd><p>Assembles a digital copy of the map and adds it to every connected vehicle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scan_vehicle</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Vehicle]</span></code>
+When passed a Vehicle object, this Vehicle will be used as a scanner. Otherwise one will be selected automatically.</p></li>
+<li><p><strong>align_pre_scan</strong> – When set to True, the supercars can start from any position on the map and align automatically before scanning. Disabling this means your supercars need to start between START and FINISH</p></li>
+<li><p><strong>blocking</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+If set to <code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code>, this function will wait until the scan is complete</p></li>
+<li><p><strong>completion_callback</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Callable[[list[TrackPiece]],None]]</span></code>
+A function or similar receiving one argument (a <code class="xref py py-class docutils literal notranslate"><span class="pre">list[TrackPiece]</span></code>) that gets executed when the scan is completed.
+This argument is optional.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The resulting map</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list[TrackPiece]</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>DuplicateScanWarning</strong> – The map was already scanned in. This scan will be skipped.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="vehicle">
+<h3>Vehicle<a class="headerlink" href="#vehicle" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="easydrive.Vehicle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easydrive.</span></span><span class="sig-name descname"><span class="pre">Vehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vehicle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Vehicle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Vehicle" title="Permalink to this definition"></a></dt>
+<dd><p>This class represents a supercar. With it you can control all functions of said supercar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vehicle</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">anki.Vehicle</span></code></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should not create this class manually, use one of the connect methods in the <a class="reference internal" href="#easydrive.Controller" title="easydrive.Controller"><code class="xref py py-class docutils literal notranslate"><span class="pre">Controller</span></code></a>.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.align_to_start">
+<span class="sig-name descname"><span class="pre">align_to_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Vehicle.align_to_start" title="Permalink to this definition"></a></dt>
+<dd><p>Align to the start piece. This only works if the map is already scanned in</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
+The speed the vehicle should travel at during alignment</p></li>
+<li><p><strong>blocking</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+If set to <code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code>, this method will wait for the Vehicle to be aligned to the start</p></li>
+<li><p><strong>completion_callback</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Callable[[],None]]</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.change_lane">
+<span class="sig-name descname"><span class="pre">change_lane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lane</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_Lane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizontal_speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizontal_acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Vehicle.change_lane" title="Permalink to this definition"></a></dt>
+<dd><p>Change to a desired lane</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lane</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">_Lane</span></code>
+The lane to move into. These may be <a class="reference internal" href="#easydrive.Lane3" title="easydrive.Lane3"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lane3</span></code></a> or <a class="reference internal" href="#easydrive.Lane4" title="easydrive.Lane4"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lane4</span></code></a>.</p></li>
+<li><p><strong>horizontal_speed</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
+The speed the vehicle will move along the track at in mm/s.
+The default for this is 300.</p></li>
+<li><p><strong>horizontal_acceleration</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
+The acceleration in mm/s² the vehicle will move horizontally with.
+The default for this is 300.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.change_position">
+<span class="sig-name descname"><span class="pre">change_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">road_center_offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizontal_speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizontal_acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Vehicle.change_position" title="Permalink to this definition"></a></dt>
+<dd><p>Change to a position offset from the track centre</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>road_center_offset</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>
+The target offset from the centre of the track piece in mm.</p></li>
+<li><p><strong>horizontal_speed</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
+The speed the vehicle will move along the track at in mm/s.
+The default for this is 300.</p></li>
+<li><p><strong>horizontal_acceleration</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
+The acceleration in mm/s² the vehicle will move horizontally with .
+The default for this is 300.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easydrive.Vehicle.current_lane3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_lane3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#easydrive.Lane3" title="anki.utility.lanes.Lane3"><span class="pre">Lane3</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#easydrive.Vehicle.current_lane3" title="Permalink to this definition"></a></dt>
+<dd><p>Short-hand for</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Vehicle</span><span class="o">.</span><span class="n">getLane</span><span class="p">(</span><span class="n">Lane3</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easydrive.Vehicle.current_lane4">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_lane4</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#easydrive.Lane4" title="anki.utility.lanes.Lane4"><span class="pre">Lane4</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#easydrive.Vehicle.current_lane4" title="Permalink to this definition"></a></dt>
+<dd><p>Short-hand for</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Vehicle</span><span class="o">.</span><span class="n">getLane</span><span class="p">(</span><span class="n">Lane4</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easydrive.Vehicle.current_track_piece">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_track_piece</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#easydrive.TrackPiece" title="anki.utility.track_pieces.TrackPiece"><span class="pre">TrackPiece</span></a></em><a class="headerlink" href="#easydrive.Vehicle.current_track_piece" title="Permalink to this definition"></a></dt>
+<dd><p>The <a class="reference internal" href="#easydrive.TrackPiece" title="easydrive.TrackPiece"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrackPiece</span></code></a> the vehicle is currently located at</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will return <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code> if either scan or align is not completed</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.disconnect">
+<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#easydrive.Vehicle.disconnect" title="Permalink to this definition"></a></dt>
+<dd><p>Disconnect from the Supercar</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember to execute this for every connected <a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a> once the program exits.
+Not doing so will result in your supercars not connecting sometimes as they still think they are connected.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>blocking</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+If set to <code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code>, the function will wait until the Vehicle has finished disconnecting or until the given timeout.</p></li>
+<li><p><strong>timeout</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[float]</span></code>
+The time to wait for a successful disconnect. If the timeout expires before the vehicle has disconnected, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeoutError</span></code> is raised
+If set to <code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code> (the default) the function will wait indefinitely.</p></li>
+<li><p><strong>completion_callback</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Callable[[],None]]</span></code>
+A function or similar to be called after the disconnect attempt has finished.
+This function must not require any positional or keyword arguments. This argument is optional.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+<li><p>The connection state of the <a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a> instance. This should always be <code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>DisconnectFailedException</strong> – The attempt to disconnect from the supercar failed for an unspecified reason</p></li>
+<li><p><strong>TimeoutError</strong> – The attempt to disconnect from the supercar did not succeed within the given timeout</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.get_lane">
+<span class="sig-name descname"><span class="pre">get_lane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span><span class="p"><span class="pre">[</span></span><span class="pre">anki.utility.lanes._Lane</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Vehicle.get_lane" title="Permalink to this definition"></a></dt>
+<dd><p>Get the current lane given a specific lane type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">_Lane</span></code>
+A class such as <a class="reference internal" href="#easydrive.Lane3" title="easydrive.Lane3"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lane3</span></code></a> or <a class="reference internal" href="#easydrive.Lane4" title="easydrive.Lane4"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lane4</span></code></a> inheriting from <code class="xref py py-class docutils literal notranslate"><span class="pre">_Lane</span></code>. This is the lane system being used.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The lane the vehicle is on. This may be none if no lane information is available.
+(such as at the start of the program, when the vehicles haven’t moved much)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[_Lane]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easydrive.Vehicle.id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#easydrive.Vehicle.id" title="Permalink to this definition"></a></dt>
+<dd><p>The id of the <a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a> instance. This is set during initialisation of the object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easydrive.Vehicle.is_connected">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_connected</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#easydrive.Vehicle.is_connected" title="Permalink to this definition"></a></dt>
+<dd><p><cite>True</cite> if the vehicle is currently connected</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easydrive.Vehicle.map">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#easydrive.TrackPiece" title="anki.utility.track_pieces.TrackPiece"><span class="pre">anki.utility.track_pieces.TrackPiece</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#easydrive.Vehicle.map" title="Permalink to this definition"></a></dt>
+<dd><p>The map the <a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a> instance is using.
+This is <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code> if the <a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a> does not have a map supplied.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easydrive.Vehicle.map_position">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">map_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#easydrive.Vehicle.map_position" title="Permalink to this definition"></a></dt>
+<dd><p>The position of the <a class="reference internal" href="#easydrive.Vehicle" title="easydrive.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a> instance on the map.
+This is <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code> if <code class="xref py py-func docutils literal notranslate"><span class="pre">Vehicle.align()</span></code> has not yet been called.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.remove_track_piece_watcher">
+<span class="sig-name descname"><span class="pre">remove_track_piece_watcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Vehicle.remove_track_piece_watcher" title="Permalink to this definition"></a></dt>
+<dd><p>Remove a track piece event handler added by <code class="xref py py-func docutils literal notranslate"><span class="pre">Vehicle.trackPieceChange()</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">function</span></code>
+The function to remove as an event handler</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – The function passed is not an event handler</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easydrive.Vehicle.road_offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">road_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#easydrive.Vehicle.road_offset" title="Permalink to this definition"></a></dt>
+<dd><p>The offset from the road centre.
+This is <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code> if the supercar did not send any information yet. (Such as when it hasn’t moved much)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.set_speed">
+<span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Vehicle.set_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Set the speed of the Supercar in mm/s</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
+The speed in mm/s.</p></li>
+<li><p><strong>acceleration</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
+The acceleration in mm/s².
+The default for this is 500.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easydrive.Vehicle.speed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#easydrive.Vehicle.speed" title="Permalink to this definition"></a></dt>
+<dd><p>The speed of the supercar in mm/s.
+This is <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code> if the supercar has not moved or <code class="xref py py-func docutils literal notranslate"><span class="pre">Vehicle.setSpeed()</span></code> hasn’t been called yet.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Vehicle.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stops the Supercar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.track_piece_change">
+<span class="sig-name descname"><span class="pre">track_piece_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Vehicle.track_piece_change" title="Permalink to this definition"></a></dt>
+<dd><p>A decorator marking a function to be executed when the supercar drives onto a new track piece</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">function</span></code>
+The listening function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function that was passed in</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">function</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.turn">
+<span class="sig-name descname"><span class="pre">turn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Vehicle.turn" title="Permalink to this definition"></a></dt>
+<dd><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This does not yet function properly. It is advised not to use this method</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easydrive.Vehicle.wait_for_track_change">
+<span class="sig-name descname"><span class="pre">wait_for_track_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#easydrive.TrackPiece" title="anki.utility.track_pieces.TrackPiece"><span class="pre">TrackPiece</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#easydrive.Vehicle.wait_for_track_change" title="Permalink to this definition"></a></dt>
+<dd><p>Waits until the current track piece changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>timeout</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[float]</span></code>
+The time (in seconds) to wait for a track piece.
+If set to <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code> (the default) will wait indefinitely for a new track piece</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The new track piece. <cite>None</cite> if <a class="reference internal" href="#easydrive.Vehicle.map" title="easydrive.Vehicle.map"><code class="xref py py-func docutils literal notranslate"><span class="pre">Vehicle.map()</span></code></a> is None
+(for example if the map has not been scanned yet)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[TrackPiece]</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TimeoutError</strong> – No new track piece was found before the given timeout</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="vehicle-models">
+<h2>Vehicle models<a class="headerlink" href="#vehicle-models" title="Permalink to this heading"></a></h2>
+<section id="lights">
+<h3>Lights<a class="headerlink" href="#lights" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="easydrive.Lights">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easydrive.</span></span><span class="sig-name descname"><span class="pre">Lights</span></span><a class="headerlink" href="#easydrive.Lights" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<section id="track-models">
+<h2>Track models<a class="headerlink" href="#track-models" title="Permalink to this heading"></a></h2>
+<section id="trackpiece">
+<h3>TrackPiece<a class="headerlink" href="#trackpiece" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="easydrive.TrackPiece">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easydrive.</span></span><span class="sig-name descname"><span class="pre">TrackPiece</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TrackPieceType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clockwise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.TrackPiece" title="Permalink to this definition"></a></dt>
+<dd><p>This class represents the different pieces of the track. It includes the type of the track piece and whether or not it turns clockwise.</p>
+<p>You should not be creating these manually.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loc</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
+The loc value send by the supercar. I’m not sure what it means either</p></li>
+<li><p><strong>type</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">TrackPieceType</span></code>
+The type of track piece</p></li>
+<li><p><strong>clockwise</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+Whether or not this track piece turns in a clockwise direction</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="easydrive.TrackPieceTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easydrive.</span></span><span class="sig-name descname"><span class="pre">TrackPieceTypes</span></span><a class="headerlink" href="#easydrive.TrackPieceTypes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<section id="lane-support">
+<h2>Lane support<a class="headerlink" href="#lane-support" title="Permalink to this heading"></a></h2>
+<section id="lane3">
+<h3>Lane3<a class="headerlink" href="#lane3" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="easydrive.Lane3">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easydrive.</span></span><span class="sig-name descname"><span class="pre">Lane3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lane_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lane_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Lane3" title="Permalink to this definition"></a></dt>
+<dd><p>A lane type for programs using 3 lanes (left, middle, right)
+This holds three constants (ordered left-to-right):</p>
+<ul class="simple">
+<li><p><cite>Lane3.LEFT</cite></p></li>
+<li><p><cite>Lane3.MIDDLE</cite></p></li>
+<li><p><cite>Lane3.RIGHT</cite></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="lane4">
+<h3>Lane4<a class="headerlink" href="#lane4" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="easydrive.Lane4">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easydrive.</span></span><span class="sig-name descname"><span class="pre">Lane4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lane_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lane_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easydrive.Lane4" title="Permalink to this definition"></a></dt>
+<dd><p>A lane type for programs using 4 lanes (leftmost, left-middle, right-middle, rightmost)
+This holds three constants (ordered left-to-right):</p>
+<ul class="simple">
+<li><p><cite>Lane4.LEFT_2</cite></p></li>
+<li><p><cite>Lane4.LEFT_1</cite></p></li>
+<li><p><cite>Lane4.RIGHT_1</cite></p></li>
+<li><p><cite>Lane4.RIGHT_2</cite></p></li>
+</ul>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-easydrive.errors">
+<span id="exceptions"></span><h2>Exceptions<a class="headerlink" href="#module-easydrive.errors" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to py-easydrive’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Pascal Rombach.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
