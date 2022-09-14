@@ -9,7 +9,7 @@ class Vehicle:
         pass
 
     def wait_for_track_change(self, timeout: Optional[float]=None) -> Optional[TrackPiece]:
-        get_single_worker().run_future(
+        return get_single_worker().run_future(
             self._internal.wait_for_track_change(),
             timeout=timeout
         )
@@ -19,13 +19,16 @@ class Vehicle:
         blocking: bool=True,
         timeout: Optional[float]=None,
         completion_callback: Callable[[],None]=None
-        ):
-        get_single_worker().run_future(
+        ) -> bool:
+        result = get_single_worker().run_future(
             self._internal.disconnect(),
             blocking=blocking,
             completion_callback=completion_callback,
             timeout=timeout
         )
+
+        if blocking:
+            return result
         pass
 
     def set_speed(self, 

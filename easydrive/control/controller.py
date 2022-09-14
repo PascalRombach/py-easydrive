@@ -1,9 +1,14 @@
 from concurrent.futures import Future
 from typing import Iterable, Optional, Callable
-from anki import Controller as AController, TrackPiece
+from anki import Controller as AController, Vehicle as AVehicle, TrackPiece
 
 from .._worker import get_single_worker
 from .vehicle import Vehicle
+
+async def _wrap_vehicle(v: AVehicle):
+        # Wraps py-drivesdk's Vehicle object into ours. This is done in an async function to make sure the event listener register there
+        return Vehicle(v)
+        pass
 
 class Controller:
     def __init__(self,*, timeout: float=10):
@@ -11,18 +16,21 @@ class Controller:
         pass
 
     def connect_one(self, vehicle_id: Optional[int]=None) -> Vehicle:
-        return Vehicle(get_single_worker().\
-            run_future(self._internal.connectOne(vehicle_id)))
+        worker = get_single_worker()
+        return worker.run_future(_wrap_vehicle(worker.\
+            run_future(self._internal.connectOne(vehicle_id))))
         pass
 
     def connect_specific(self, address: str, vehicle_id: Optional[int]=None) -> Vehicle:
-        return Vehicle(get_single_worker().\
-            run_future(self._internal.connectSpecific(address,vehicle_id)))
+        worker = get_single_worker()
+        return worker.run_future(_wrap_vehicle(worker.\
+            run_future(self._internal.connectSpecific(address,vehicle_id))))
         pass
 
     def connect_many(self, amount: int, vehicle_ids: Iterable[int]=None) -> tuple[Vehicle]:
-        return tuple([Vehicle(v)
-            for v in get_single_worker().\
+        worker = get_single_worker()
+        return tuple([worker.run_future(_wrap_vehicle(v))
+            for v in worker.\
                 run_future(self._internal.connectMany(amount,vehicle_ids))])
         pass
 
