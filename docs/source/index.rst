@@ -11,6 +11,7 @@ Welcome to py-easydrive's documentation!
    :caption: Contents:
 
    api
+   install
 
 Indices and tables
 ==================
