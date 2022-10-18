@@ -1,5 +1,4 @@
 from easydrive import Controller
-from time import sleep
 
 control = Controller()                      # This is the controller. It manages the vehicles for us
 v = control.connect_one()                   # Connect to one non-charging vehicle
