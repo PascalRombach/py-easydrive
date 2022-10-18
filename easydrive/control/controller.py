@@ -120,7 +120,7 @@ class Controller:
         pass
 
     def scan(self, 
-        scan_vehicle: Vehicle, 
+        scan_vehicle: Vehicle=None, 
         align_pre_scan: bool=True, 
         blocking: bool=True, 
         completion_callback: Callable[[list[TrackPiece]],None]=None
@@ -151,7 +151,12 @@ class Controller:
             completion_callback(future.result())
 
         return get_single_worker().run_future(
-            self._internal.scan(scan_vehicle._internal,align_pre_scan),
+            self._internal.scan(
+                scan_vehicle._internal if 
+                    scan_vehicle is not None 
+                    else None,
+                align_pre_scan
+            ),
             blocking,
             callback if completion_callback is not None else None
             )
