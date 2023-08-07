@@ -1,13 +1,15 @@
 from threading import Thread, Event
 from concurrent.futures import Future as ConcurrentFuture
-from typing import Any, Optional, Callable
-from asyncio import new_event_loop, Future as AIOFuture, run_coroutine_threadsafe
+from typing import Any, Optional, Callable, TypeVar
+from asyncio import new_event_loop, run_coroutine_threadsafe
 from atexit import register
+from collections.abc import Awaitable
 
 __all__ = (
     "AsyncWorker",
     "get_single_worker"
 )
+T = TypeVar('T')
 
 class AsyncWorker(Thread):
     def __init__(self):
@@ -24,11 +26,14 @@ class AsyncWorker(Thread):
         pass
 
     def run_future(self, 
-        future: AIOFuture, 
+        future: Awaitable[T], 
         blocking: bool=True, 
-        completion_callback: Callable[[ConcurrentFuture],None]= None, 
+        completion_callback: Callable[
+            [ConcurrentFuture],
+            None
+        ]|None= None,
         timeout: Optional[float]=None
-        ) -> ConcurrentFuture|Any:
+        ) -> T:
         con_future: ConcurrentFuture = run_coroutine_threadsafe(future, self._loop)
         
         if completion_callback is not None:
@@ -59,11 +64,11 @@ class AsyncWorker(Thread):
     pass
 
 
-_SINGLE: AsyncWorker = ...
+_SINGLE: AsyncWorker|None = None
 def get_single_worker():
     global _SINGLE
 
-    if _SINGLE is Ellipsis:
+    if _SINGLE is None:
         _SINGLE= AsyncWorker()
         _SINGLE.start()
         _SINGLE.wait_for_setup_completion()

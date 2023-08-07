@@ -1,6 +1,11 @@
 from concurrent.futures import Future
 from typing import Iterable, Optional, Callable
-from anki import Controller as AController, Vehicle as AVehicle, TrackPiece
+from anki import (
+    Controller as AController, 
+    Vehicle as AVehicle, 
+    TrackPiece, 
+    TrackPieceType
+)
 
 from .._worker import get_single_worker
 from .vehicle import Vehicle
@@ -47,10 +52,14 @@ class Controller:
         """
         worker = get_single_worker()
         return worker.run_future(_wrap_vehicle(worker.\
-            run_future(self._internal.connectOne(vehicle_id))))
+            run_future(self._internal.connect_one(vehicle_id))))
         pass
 
-    def connect_specific(self, address: str, vehicle_id: Optional[int]=None) -> Vehicle:
+    def connect_specific(
+            self, 
+            address: str, 
+            vehicle_id: Optional[int]=None
+        ) -> Vehicle:
         """Connect to a supercar with a specified MAC address
         
         :param address: :class:`str`
@@ -79,10 +88,17 @@ class Controller:
         """
         worker = get_single_worker()
         return worker.run_future(_wrap_vehicle(worker.\
-            run_future(self._internal.connectSpecific(address,vehicle_id))))
+            run_future(self._internal.connect_specific(
+                address,
+                vehicle_id
+            ))))
         pass
 
-    def connect_many(self, amount: int, vehicle_ids: Iterable[int]=None) -> tuple[Vehicle]:
+    def connect_many(
+            self, 
+            amount: int, 
+            vehicle_ids: Iterable[int]|None=None
+        ) -> tuple[Vehicle]:
         """Connect to <amount> non-charging Supercars
         
         :param amount: :class:`int`
@@ -114,16 +130,22 @@ class Controller:
 
         """
         worker = get_single_worker()
-        return tuple([worker.run_future(_wrap_vehicle(v))
+        return tuple(worker.run_future(_wrap_vehicle(v))
             for v in worker.\
-                run_future(self._internal.connectMany(amount,vehicle_ids))])
+                run_future(
+                    self._internal.connect_many(amount,vehicle_ids)
+                )
+            )
         pass
 
     def scan(self, 
-        scan_vehicle: Vehicle=None, 
+        scan_vehicle: Vehicle|None=None, 
         align_pre_scan: bool=True, 
         blocking: bool=True, 
-        completion_callback: Callable[[list[TrackPiece]],None]=None
+        completion_callback: Callable[
+            [list[TrackPiece]],
+            None
+        ]|None=None
         ) -> list[TrackPiece]:
         """Assembles a digital copy of the map and adds it to every connected vehicle.
         
@@ -164,7 +186,7 @@ class Controller:
 
     def disconnect_all(self, 
         blocking: bool=True, 
-        completion_callback: Callable[[],None]=None):
+        completion_callback: Callable[[],None]|None=None):
         """Disconnects from all the connected supercars
         
         :param blocking: :class:`bool`
@@ -181,7 +203,7 @@ class Controller:
             A disconnection attempt failed for unspecific reasons
         """
         get_single_worker().run_future(
-            self._internal.disconnectAll(),
+            self._internal.disconnect_all(),
             blocking,
             (lambda _: completion_callback()) 
             if completion_callback is not None 
@@ -190,7 +212,7 @@ class Controller:
         pass
 
     @property
-    def map_types(self) -> tuple:
+    def map_types(self) -> tuple[TrackPieceType]|None:
         """A list of :attr:`TrackPiece.type` of the map, in-order"""
         return self._internal.map_types
         pass
