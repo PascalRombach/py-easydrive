@@ -43,8 +43,8 @@ class Vehicle:
     def disconnect(self, 
         blocking: bool=True,
         timeout: Optional[float]=None,
-        completion_callback: Callable[[],None]=None
-        ) -> bool:
+        completion_callback: Callable[[],None]|None=None
+        ) -> bool|None:
         """Disconnect from the Supercar
 
         .. note::
@@ -101,7 +101,7 @@ class Vehicle:
             The default for this is 500.
         """
         get_single_worker().run_future(
-            self._internal.setSpeed(speed,acceleration),
+            self._internal.set_speed(speed,acceleration),
             False
         )
         pass
@@ -115,14 +115,14 @@ class Vehicle:
         pass
 
     def change_lane(self, 
-        lane: _Lane, 
+        lane: _LaneType, 
         horizontal_speed: int=300, 
         horizontal_acceleration: int=300
         ):
         """
         Change to a desired lane
 
-        :param lane: :class:`_Lane` 
+        :param lane: :class:`BaseLane` 
             The lane to move into. These may be :class:`Lane3` or :class:`Lane4`.
         :param horizontal_speed: :class:`int`
             The speed the vehicle will move along the track at in mm/s.
@@ -133,7 +133,7 @@ class Vehicle:
         
         """
         get_single_worker().run_future(
-            self._internal.changeLane(lane,horizontal_speed,horizontal_acceleration)
+            self._internal.change_lane(lane,horizontal_speed,horizontal_acceleration)
         )
         pass
 
@@ -155,7 +155,7 @@ class Vehicle:
             The default for this is 300.
         """
         get_single_worker().run_future(
-            self._internal.changePosition(road_center_offset,horizontal_speed,horizontal_acceleration)
+            self._internal.change_position(road_center_offset,horizontal_speed,horizontal_acceleration)
         )
         pass
 
@@ -169,20 +169,20 @@ class Vehicle:
         )
         pass
 
-    def get_lane(self, mode: type[_Lane]):
+    def get_lane(self, mode: _LaneType):
         """
         Get the current lane given a specific lane type
 
-        :param mode: :class:`_Lane` 
-            A class such as :class:`Lane3` or :class:`Lane4` inheriting from :class:`_Lane`. This is the lane system being used.
+        :param mode: :class:`BaseLane` 
+            A class such as :class:`Lane3` or :class:`Lane4` inheriting from :class:`BaseLane`. This is the lane system being used.
         
         Returns
         -------
-        :class:`Optional[_Lane]`
+        :class:`Optional[BaseLane]`
             The lane the vehicle is on. This may be none if no lane information is available.
             (such as at the start of the program, when the vehicles haven't moved much)
         """
-        return self._internal.getLane(mode)
+        return self._internal.get_lane(mode)
         pass
 
     def align_to_start(self, 
@@ -251,7 +251,7 @@ class Vehicle:
         return self._internal.is_connected
     
     @property
-    def current_track_piece(self) -> TrackPiece:
+    def current_track_piece(self) -> TrackPiece|None:
         """
         The :class:`TrackPiece` the vehicle is currently located at
 
@@ -261,7 +261,7 @@ class Vehicle:
         return self._internal.current_track_piece
     
     @property
-    def map(self) -> tuple[TrackPiece]:
+    def map(self) -> tuple[TrackPiece]|None:
         """
         The map the :class:`Vehicle` instance is using. 
         This is :class:`None` if the :class:`Vehicle` does not have a map supplied.
@@ -269,7 +269,7 @@ class Vehicle:
         return self._internal.map
     
     @property
-    def map_position(self) -> int:
+    def map_position(self) -> int|None:
         """
         The position of the :class:`Vehicle` instance on the map.
         This is :class:`None` if :func:`Vehicle.align` has not yet been called.
@@ -277,7 +277,7 @@ class Vehicle:
         return self._internal.map_position
     
     @property
-    def road_offset(self) -> float:
+    def road_offset(self) -> float|None:
         """
         The offset from the road centre.
         This is :class:`None` if the supercar did not send any information yet. (Such as when it hasn't moved much)
