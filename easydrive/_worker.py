@@ -2,7 +2,6 @@ from threading import Thread, Event
 from concurrent.futures import Future as ConcurrentFuture
 from typing import Any, Optional, Callable, TypeVar
 from asyncio import new_event_loop, run_coroutine_threadsafe
-from atexit import register
 from collections.abc import Awaitable
 
 __all__ = (
