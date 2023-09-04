@@ -1,7 +1,7 @@
 from typing import Callable, Optional
 from .._worker import get_single_worker
 from anki import Vehicle as AVehicle, TrackPiece, errors
-from anki.utility.lanes import _Lane, Lane3, Lane4
+from anki.misc.lanes import BaseLane, Lane3, Lane4, _LaneType
 
 class Vehicle:
     """This class represents a supercar. With it you can control all functions of said supercar.
