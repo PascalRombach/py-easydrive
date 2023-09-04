@@ -222,7 +222,7 @@ class Vehicle:
         :class:`function`
             The function that was passed in
         """
-        self._internal.trackPieceChange(func)
+        self._internal.track_piece_change(func)
         pass
 
     def remove_track_piece_watcher(self, func):
@@ -237,7 +237,7 @@ class Vehicle:
         :class:`ValueError`
             The function passed is not an event handler
         """
-        self._internal.removeTrackPieceWatcher(func)
+        self._internal.remove_track_piece_watcher(func)
         pass
 
     
