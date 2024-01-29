@@ -1,6 +1,6 @@
 from threading import Thread, Event
-from concurrent.futures import Future as ConcurrentFuture
-from typing import Any, Optional, Callable, TypeVar
+from concurrent.futures import Future as ConcurrentFuture, ThreadPoolExecutor
+from typing import Any, Optional, Callable, ParamSpec, TypeVar
 from asyncio import new_event_loop, run_coroutine_threadsafe
 from collections.abc import Awaitable
 
@@ -9,6 +9,8 @@ __all__ = (
     "get_single_worker"
 )
 T = TypeVar('T')
+P = ParamSpec('P')
+POOL = ThreadPoolExecutor()
 
 class AsyncWorker(Thread):
     def __init__(self):
@@ -74,4 +76,13 @@ def get_single_worker():
         pass
 
     return _SINGLE
+    pass
+
+
+def make_concurrent(func: Callable[P, Any]) -> Callable[P, None]:
+    # Decorator wrapping a callback to be run concurrently using a thread pool
+    def wrapper(*args: P.args, **kwargs: P.kwargs) -> None:
+        POOL.submit(func, *args, **kwargs)
+    
+    return wrapper
     pass

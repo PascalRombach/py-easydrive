@@ -1,5 +1,5 @@
 from typing import Callable, Optional
-from .._worker import get_single_worker
+from .._worker import get_single_worker, make_concurrent
 from anki import Vehicle as AVehicle, TrackPiece, errors
 from anki.misc.lanes import BaseLane, Lane3, Lane4, _LaneType
 
@@ -222,7 +222,8 @@ class Vehicle:
         :class:`function`
             The function that was passed in
         """
-        self._internal.track_piece_change(func)
+        func.__async_callback__ = make_concurrent(func)
+        self._internal.track_piece_change(func.__async_callback__)
         pass
 
     def remove_track_piece_watcher(self, func):
@@ -237,7 +238,9 @@ class Vehicle:
         :class:`ValueError`
             The function passed is not an event handler
         """
-        self._internal.remove_track_piece_watcher(func)
+        if not hasattr(func, "__async_callback__"):
+            raise ValueError("The passed function is not a registered event handler")
+        self._internal.remove_track_piece_watcher(func.__async_callback__)
         pass
 
     
